@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<body>
+    <form>
+        <input type="text" placeholder="Name" id= "name" class="form-control">
+        <div id="divName"><input type="text" placeholder="Last Name" id="lastName" class="form-control"></div>
+        <div id="divMail"><input type="email" placeholder="Email" id= "email" class="form-control"></div>
+        <div id="divMsg"><textarea name="mensaje" placeholder="Leave you message" id= "msg" cols="50" rows="5" required></textarea></div>
+        <button type="submit" id= "submitBtn">Submit</button>
+    </form>
+
+    <script>
+        $(document).ready(function(){
+                $("#name").focusin(function(){
+                    $("#name").css("background-color", "lightgrey");
+                })
+                $("#name").focusout(function(){
+                    $("#name").css("background-color", "white");
+                })
+
+                $("#lastName").focusin(function(){
+                    $("#lastName").css("background-color", "lightgrey");
+                })
+                $("#lastName").focusout(function(){
+                    $("#lastName").css("background-color", "white");
+                })
+
+                $("#email").focusin(function(){
+                    $("#email").css("background-color", "lightgrey");
+                })
+                $("#email").focusout(function(){
+                    $("#email").css("background-color", "white");
+                })
+
+                 $("#msg").focusin(function(){
+                    $("#msg").css("background-color", "lightgrey");
+                })
+                $("#msg").focusout(function(){
+                    $("#msg").css("background-color", "white");
+                })
+
+                $("input, button, textarea").css("margin", "1rem");
+
+                let txt = $("#lastName");
+                txt.blur(check);
+
+                function check (){ 
+                    if (txt.val() === '' || null || undefined){
+                        txt.removeClass("is-valid");
+                        txt.addClass("is-invalid");
+                        $("small").remove();
+                        $("#divName").append("<small style='color: red;margin-left: 3rem'>Please insert your last name</small>");
+                    } else {
+                        txt.removeClass("is-invalid");
+                        txt.addClass("is-valid");
+                        $("small").remove();
+                    }
+                }
+                
+                let mail = $("#email");
+                mail.blur(checkMail);
+
+                function checkMail (){ 
+                    if (mail.val() === '' || null || undefined || mail.val().indexOf('@') < 1 || mail.val().indexOf('.') < 2){
+                        mail.removeClass("is-valid");
+                        mail.addClass("is-invalid");
+                        $("small").remove();
+                        $("#divMail").append("<small style='color: red;margin-left: 3rem'>Please insert a valid email</small>");
+                    } else {
+                        mail.removeClass("is-invalid");
+                        mail.addClass("is-valid");
+                        $("small").remove();
+                    }
+                }
+
+                let msg = $("#msg");
+                msg.blur(checkMsg);
+
+                function checkMsg (){ 
+                    if (msg.val() === '' || null || undefined){
+                        msg.removeClass("is-valid");
+                        msg.addClass("is-invalid");
+                        $("small").remove();
+                        $("#divMsg").append("<small style= 'color: red'>Please insert a message</small>");
+                    } else {
+                        msg.removeClass("is-invalid");
+                        msg.addClass("is-valid");
+                        $("small").remove();
+
+                    }
+                }
+            });
+    </script>
+    
+</body>
+</html>
